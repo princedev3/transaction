@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export const POST = async (req: Request) => {
+export const POST = async (req: Request, res: any) => {
   try {
     const { email, password } = await req.json();
     const age = 60 * 60 * 24 * 7;
