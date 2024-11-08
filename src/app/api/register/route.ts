@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import prisma from "@/libs/prisma";
 
-export const POST = async (req: Request, _res: any) => {
+export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
     const { email, name, password } = await req.json();
     const min = 1000;

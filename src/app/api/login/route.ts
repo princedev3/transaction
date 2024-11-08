@@ -1,10 +1,10 @@
 import prisma from "@/libs/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export const POST = async (req: Request, res: any) => {
+export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
     const { email, password } = await req.json();
     const age = 60 * 60 * 24 * 7;
