@@ -2,7 +2,7 @@ import { verifyToken } from "@/libs/action";
 import prisma from "@/libs/prisma";
 import { NextResponse } from "next/server";
 
-export const POST = async (req: Request, res: Response) => {
+export const POST = async (req: Request, res: any) => {
   try {
     const body = await req.json();
     const result = await verifyToken(String(body));
