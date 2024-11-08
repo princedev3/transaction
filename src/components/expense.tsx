@@ -11,7 +11,7 @@ const Expense = async () => {
           <h1 className="mx-auto uppercase text-lg font-semibold text-green-700">
             ${" "}
             {new Intl.NumberFormat("en-US").format(
-              Number(Math.abs(Number(income?.toFixed(1))))
+              Number(Math.abs(Number(income && income?.toFixed(1))))
             )}
           </h1>
         </div>
@@ -21,7 +21,7 @@ const Expense = async () => {
           <h1 className="mx-auto uppercase text-lg font-semibold text-red-700">
             ${" "}
             {new Intl.NumberFormat("en-US").format(
-              Number(Math.abs(Number(expense?.toFixed(1))))
+              Number(Math.abs(Number(expense && expense?.toFixed(1))))
             )}
           </h1>
         </div>

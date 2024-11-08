@@ -7,7 +7,10 @@ const Balance = async () => {
     <div>
       <h1 className="capitalize text-2xl mt-5">your balance:</h1>
       <p className="font-semibold text-2xl">
-        $ {new Intl.NumberFormat("en-US").format(Number(balance.balance)) ?? 0}{" "}
+        ${" "}
+        {new Intl.NumberFormat("en-US").format(
+          Number(balance && balance?.balance)
+        ) ?? 0}{" "}
       </p>
     </div>
   );

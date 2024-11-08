@@ -1,12 +1,13 @@
 import prisma from "@/libs/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const { email, password } = await req.json();
+
     const age = 60 * 60 * 24 * 7;
     const existingUser = await prisma.user.findUnique({
       where: {
@@ -45,11 +46,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       status: 200,
       headers: { "Set-Cookie": cookieString },
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error.message);
     return new NextResponse(
       JSON.stringify({ message: "can not create post" }),
       { status: 500 }
     );
   }
-};
+}
