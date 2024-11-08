@@ -26,21 +26,25 @@ export const POST = async (req: Request, res: NextResponse) => {
       { expiresIn: age }
     );
 
-    if (isPasswordCorrect && existingUser?.active) {
-      const cookie = await cookies();
-      cookie.set("tokenLogin", token, {
-        httpOnly: true,
-        maxAge: age,
-        path: "/",
-        sameSite: "strict",
-        secure: false,
-      });
-      const cookieString = cookie.toString();
-      return new NextResponse(JSON.stringify(existingUser), {
-        status: 200,
-        headers: { "Set-Cookie": cookieString },
-      });
+    if (!isPasswordCorrect && !existingUser?.active) {
+      return new NextResponse(
+        JSON.stringify({ message: "can not create post" }),
+        { status: 500 }
+      );
     }
+    const cookie = await cookies();
+    cookie.set("tokenLogin", token, {
+      httpOnly: true,
+      maxAge: age,
+      path: "/",
+      sameSite: "strict",
+      secure: false,
+    });
+    const cookieString = cookie.toString();
+    return new NextResponse(JSON.stringify(existingUser), {
+      status: 200,
+      headers: { "Set-Cookie": cookieString },
+    });
   } catch (error) {
     console.log(error);
     return new NextResponse(
