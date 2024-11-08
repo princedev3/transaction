@@ -34,7 +34,7 @@ export default function VerifyEmail() {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push("/login/" + email);
+      router.push("/login");
     }
     if (isError) {
       toast.error("something went wrong");

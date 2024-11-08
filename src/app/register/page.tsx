@@ -95,12 +95,3 @@ export default function Register() {
     </div>
   );
 }
-// label,
-// onChange,
-// placeholder,
-// id,
-// name,
-// required,
-// defaultValue,
-// readonly,
-// className,

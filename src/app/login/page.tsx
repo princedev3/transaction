@@ -4,7 +4,7 @@ import { RemoveNullContext } from "@/libs/context";
 import { Button } from "@/ui/button";
 import EmailInput from "@/ui/input/email-input";
 import PasswordInput from "@/ui/input/password-input";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -13,7 +13,6 @@ export default function EmailPage() {
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [loading, setLoading] = useState(false);
   const [login] = useLoginMutation();
-  const params = useParams();
   const router = useRouter();
   const handleInputSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,14 +55,7 @@ export default function EmailPage() {
           label="email"
           required
           name="email"
-          placeholder={
-            params.email
-              ? decodeURIComponent(params.email as string)
-              : "Enter your email"
-          }
-          defaultValue={
-            params.email ? decodeURIComponent(params.email as string) : ""
-          }
+          placeholder={"Enter your email"}
         />
         <PasswordInput
           id="password"
