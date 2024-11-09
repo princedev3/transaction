@@ -4,7 +4,13 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+// NOTE:  you can alsways do thiss
+
+// return NextResponse.json() to return a JSON response instead of returning a new NextResponse() instance and stringifying the JSON object.
+
+
+
+export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
 
